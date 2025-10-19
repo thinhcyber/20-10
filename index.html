@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chúc Mừng 20/10</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffe6f0, #fff0f5);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Chữ lấp lánh */
+    .sparkle-text {
+      background: linear-gradient(90deg, #ff7eb9, #ff65a3, #fcd5ce, #ffd6e0, #cdb4db, #ff7eb9);
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 6s linear infinite, glitter 1.5s infinite;
+      text-align: center;
+      margin-top: 100px;
+      font-size: 3em;
+    }
+
+    @keyframes shine {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    @keyframes glitter {
+      0%, 100% {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6),
+                     0 0 15px rgba(255, 192, 203, 0.5);
+      }
+      60% {
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.9),
+                     0 0 20px rgba(255, 105, 180, 0.8);
+      }
+    }
+
+    .subtext {
+      text-align: center;
+      font-size: 1.5em;
+      color: #6c757d;
+      animation: fadeInUp 2s ease-out;
+      transition: transform 0.3s, color 0.3s;
+      margin-bottom: 20px;
+    }
+
+    .subtext:hover {
+      transform: scale(1.05);
+      color: #343a40;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d6d;
+      transform: rotate(45deg);
+      animation: fall 10s linear infinite;
+      z-index: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d6d;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10%;
+        opacity: 1;
+      }
+      100% {
+        top: 110%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+    }
+
+    .image-container {
+      text-align: center;
+      margin-top: 30px;
+      animation: fadeInUp 2s ease-in-out;
+    }
+
+    .image-container img {
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      animation: pulse 3s infinite;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .image-container img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(255, 0, 127, 0.5);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 10px;
+      padding: 5px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      z-index: 10;
+    }
+
+    .audio-control:hover {
+      box-shadow: 0 0 15px #ff69b4;
+      transform: scale(1.05);
+    }
+
+    /* Nút mở card */
+    .open-card-btn {
+      display: block;
+      margin: 30px auto 40px auto;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.3em;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 77, 109, 0.6);
+      user-select: none;
+    }
+
+    .open-card-btn:hover {
+      background-color: #e04363;
+    }
+
+    /* Overlay popup card */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: none; /* ẩn ban đầu */
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Card popup */
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      max-width: 400px;
+      padding: 30px 40px;
+      text-align: center;
+      position: relative;
+      animation: popupFadeIn 0.4s ease forwards;
+    }
+
+    @keyframes popupFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .card h2 {
+      margin: 0 0 20px 0;
+      color: #ff4d6d;
+      font-size: 2em;
+    }
+
+    .card p {
+      font-size: 1.2em;
+      color: #555;
+      margin: 10px 0;
+      line-height: 1.4;
+    }
+
+    /* Nút đóng */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: #ff4d6d;
+      border: none;
+      color: white;
+      font-size: 24px;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      cursor: pointer;
+      line-height: 34px;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+
+    .close-btn:hover {
+      background-color: #e04363;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="sparkle-text">🌸 Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 🌸</h1>
+  <p class="subtext">Chúc một nửa thế giới luôn xinh đẹp, hạnh phúc và thành công!</p>
+
+  <div class="image-container">
+    <img src="https://cdn2.fptshop.com.vn/unsafe/anh_meme_cho_bua_hai_huoc_19_ba7d7077f2.jpg" alt="Hoa tặng 20/10" />
+  </div>
+
+  <!-- Nút mở popup card -->
+  <button class="open-card-btn" id="openCardBtn">Mở Lời Chúc Đặc Biệt</button>
+
+  <!-- Overlay + Card popup -->
+  <div class="overlay" id="overlay">
+    <div class="card" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+      <button class="close-btn" id="closeCardBtn" aria-label="Đóng popup">&times;</button>
+      <h2 id="popupTitle">🎉 Lời Chúc Đặc Biệt 🎉</h2>
+      <div class="image-container">
+    <img src="https://i.imgur.com/Zh4u9rx.jpg" alt="Hoa tặng 20/10" />
+  </div>
+      <p>Chúc bạn luôn mạnh khỏe, vui vẻ và ngập tràn hạnh phúc trong ngày Phụ nữ Việt Nam 20/10!</p>
+      <p>Hãy tận hưởng ngày hôm nay thật trọn vẹn nhé!</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 - Gửi đến những người phụ nữ tuyệt vời 💖
+  </div>
+
+  <!-- Âm thanh nền -->
+  <audio id="bg-music" autoplay loop controls class="audio-control">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3" />
+    Trình duyệt của bạn không hỗ trợ phát nhạc.
+  </audio>
+
+  <!-- Hiệu ứng trái tim rơi -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(createHeart, 200);
+
+    // Mở / đóng popup card
+    const openBtn = document.getElementById('openCardBtn');
+    const closeBtn = document.getElementById('closeCardBtn');
+    const overlay = document.getElementById('overlay');
+
+    openBtn.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+      // Khóa scroll trang khi popup mở
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+
+    // Đóng popup khi click ngoài card
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Tắt popup khi nhấn ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && overlay.style.display === 'flex') {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
